@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ thesis.title }}</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="/static/scripts.js" defer></script>
+</head>
+<body>
+    <h1>{{ thesis.title }}</h1>
+    <p><strong>Author:</strong> {{ thesis.author }}</p>
+    <p><strong>Institute:</strong> {{ thesis.institute }}</p>
+    <p><strong>University:</strong> {{ thesis.university }}</p>
+    <p><strong>Language:</strong> {{ thesis.language }}</p>
+    <p><strong>Year:</strong> {{ thesis.year }}</p>
+    <p><strong>Number of Pages:</strong> {{ thesis.number_of_pages }}</p>
+    <p><strong>Submission Date:</strong> {{ thesis.submission_date }}</p>
+    
+    <p class="abstract"><strong>Abstract:</strong> {{ thesis.abstract }}</p>
+    
+    <p><strong>Keywords:</strong> {{ thesis.keywords | join(', ') }}</p>
+    
+    <h2>Supervisors</h2>
+    <ul>
+        {% for supervisor in thesis.supervisors %}
+            <li>{{ supervisor.name }} (Role: {{ supervisor.role }})</li>
+        {% endfor %}
+    </ul>
+    
+    <a href="/">Back to Home</a>
+
+    <footer>
+        <p>&copy; 2025 Graduate Thesis System</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graduate Thesis System</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="/static/main.js" defer></script>
+</head>
+<body>
+    <h1>Graduate Thesis System</h1>    
+        <!-- Arama Çubuğu -->
+        <form method="POST" action="/search">
+            <input 
+                type="text" 
+                name="search" 
+                placeholder="Search for a thesis..." 
+                value="{{ search_query }}" 
+                style="padding: 10px; width: 60%; margin: 20px auto; display: block; border: 1px solid #ccc; border-radius: 5px;"
+            >
+            <button 
+                type="submit" 
+                style="padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;"
+            >
+                Search
+            </button>
+        </form>
+    
+        <h2>Available Theses</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Thesis Title</th>
+                    <th>Author</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if theses %}
+                    {% for thesis in theses %}
+                    <tr>
+                        <td><a href="/thesis/{{ thesis.id }}">{{ thesis.title }}</a></td>
+                        <td>{{ thesis.author }}</td>
+                        <td><a href="/thesis/{{ thesis.id }}">View Details</a></td>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="3">No theses found.</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+</body>
+</html>
